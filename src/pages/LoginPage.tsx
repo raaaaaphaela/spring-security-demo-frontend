@@ -1,7 +1,6 @@
 import React, {FormEvent, useCallback, useMemo, useState} from "react";
-import {Link, useLocation, useNavigate, useSearchParams} from "react-router-dom";
+import {Link, useNavigate, useSearchParams} from "react-router-dom";
 import axios from "axios";
-import Auth from "../components/Auth";
 
 export default function LoginPage() {
 
@@ -20,13 +19,11 @@ export default function LoginPage() {
 
     const [searchParams] = useSearchParams();
     const redirect = useMemo(() =>
-        searchParams.get("redirect") || "/",
+            searchParams.get("redirect") || "/",
         [searchParams]
     );
 
     const navigate = useNavigate();
-    const location = useLocation();
-
     const login = useCallback(
         async (e: FormEvent<HTMLFormElement>) => {
             e.preventDefault();
@@ -37,7 +34,7 @@ export default function LoginPage() {
             });
             navigate(redirect);
         },
-        [credentials, navigate, location]
+        [credentials, navigate, redirect]
     );
 
     return (
@@ -65,10 +62,6 @@ export default function LoginPage() {
                     or <Link to={"/signup"}>sign up here</Link>
                 </div>
             </form>
-
-            <Auth shouldRedirect={false}>
-                <div>Schon eingeloggt</div>
-            </Auth>
         </div>
     )
 }

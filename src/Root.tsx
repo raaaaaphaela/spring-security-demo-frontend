@@ -27,12 +27,12 @@ export default function Root() {
                 </NoAuth>
             }/>
             <Route path={"/"} element={
-                <Auth>
+                <Auth roles={["BASIC", "ADMIN"]}>
                     <HomePage/>
                 </Auth>
             }/>
             <Route path={"/special"} element={
-                <Auth>
+                <Auth roles={["ADMIN"]}>
                     <SpecialPage/>
                 </Auth>
             }/>

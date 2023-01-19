@@ -3,7 +3,7 @@ import axios from "axios";
 
 export default function useAuth() {
 
-    const [user, setUser] = useState<{ username: string } | null>(null);
+    const [user, setUser] = useState<{username: string, role: string}|null>(null);
     const [isReady, setIsReady] = useState(false);
 
     useEffect(() => {
